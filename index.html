@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Memory Game - Тренировка памяти</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Игра на развитие памяти. Найдите все пары карточек!">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1><span aria-hidden="true">🧠</span> Memory Game</h1>
+    <p class="subtitle">Найдите все пары одинаковых карточек!</p>
+</header>
+
+<main>
+    <div class="menu">
+        <!-- Размер поля -->
+        <div class="menu-group">
+            <label for="size">
+                <span class="menu-label">Размер поля:</span>
+                <select id="size" aria-label="Выберите размер игрового поля">
+                    <option value="4x3">4 × 3 (12 карт)</option>
+                    <option value="4x4" selected>4 × 4 (16 карт)</option>
+                    <option value="6x4">6 × 4 (24 карты)</option>
+                    <option value="6x6">6 × 6 (36 карт)</option>
+                </select>
+            </label>
+        </div>
+
+        <!-- Категории -->
+        <div class="menu-group">
+            <fieldset class="category-fieldset">
+                <legend>Категории карточек:</legend>
+                <div id="categories" class="categories-container">
+                    <!-- Категории будут загружены из cards.json -->
+                </div>
+                <div class="category-hint">Выберите одну или несколько категорий</div>
+            </fieldset>
+        </div>
+
+        <!-- Рубашка -->
+        <div class="menu-group">
+            <label for="back">
+                <span class="menu-label">Рубашка карт:</span>
+                <select id="back" aria-label="Выберите дизайн рубашки карт">
+                    <!-- Варианты будут загружены из backs.json -->
+                </select>
+            </label>
+        </div>
+
+        <!-- Настройки -->
+        <div class="menu-group settings">
+            <div class="setting">
+                <label for="kids">
+                    <input type="checkbox" id="kids">
+                    <span class="setting-icon" aria-hidden="true">👶</span>
+                    <span class="setting-label">Детский режим</span>
+                    <span class="setting-hint">(показ всех карт в начале)</span>
+                </label>
+            </div>
+            
+            <div class="setting">
+                <label for="sound">
+                    <input type="checkbox" id="sound" checked>
+                    <span class="setting-icon" aria-hidden="true">🔊</span>
+                    <span class="setting-label">Звуковые эффекты</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Кнопки управления -->
+        <div class="menu-group actions">
+            <button type="button" id="startBtn" onclick="startGame()" class="btn-start">
+                <span aria-hidden="true">▶</span> Начать игру
+            </button>
+            <button type="button" id="resetBtn" onclick="resetCurrentGame()" class="btn-secondary" disabled>
+                <span aria-hidden="true">🔄</span> Начать заново
+            </button>
+        </div>
+    </div>
+
+    <!-- Статистика игры -->
+    <div id="stats" class="stats" style="display: none;">
+        <div class="stat">
+            <span class="stat-label">Найдено пар:</span>
+            <span id="foundPairs" class="stat-value">0</span>
+            <span class="stat-separator">/</span>
+            <span id="totalPairs" class="stat-value">0</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Ход:</span>
+            <span id="currentTurn" class="stat-value">1</span>
+        </div>
+    </div>
+
+    <!-- Игровое поле -->
+    <div id="game" class="game" aria-label="Игровое поле для поиска пар"></div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p>Memory Game • HTML / CSS / JavaScript</p>
+        <p class="footer-hint">Для игры кликайте по карточкам, чтобы найти пары</p>
+    </div>
+</footer>
+
+<script src="game.js"></script>
+</body>
+</html>
